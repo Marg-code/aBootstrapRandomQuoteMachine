@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Quote Generator</title>
+    <script>
+    const QUOTEBANK = [
+        {
+            quote: '"When Love will rule the world, dogs will be at power."',
+            author: "Pepper"
+        },
+        {
+            quote: '"I will always smell you."',
+            author: "Pepper"
+        },
+        {
+            quote: '"I farted."',
+            author: "Pepper"
+        },
+        {
+    quote: "\"If it smells, it’s mine.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Drool is just my way of saying I love you.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Play hard, nap harder.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"I didn’t burp, I barked from the inside.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Nature is my playground… and my bathroom.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Snuggles first, questions later.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Did someone say snacks? Oh, that was me.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"If I fits, I snuggles.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"I burp because I care.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Running is just fast snuggling with the wind.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Drool: the ultimate love letter.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Farts are just my way of breaking the ice.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"If you drop it, it’s mine. If I drop it, it’s still mine.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Who needs perfume when you have wet dog smell?\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Every walk is a chance to explore new smells and leave my mark.\"",
+    author: "Pepper"
+},
+{
+    quote: "\"Why be serious when you can be seriously goofy?\"",
+    author: "Pepper"
+},
+{
+    quote: "\"The best things in life are slobbery.\"",
+    author: "Pepper"
+}
+
+    ];
+
+    function generateQuote() {
+        const randomIndex = Math.floor(Math.random() * QUOTEBANK.length);
+        const randomQuote = QUOTEBANK[randomIndex];
+        
+        if (randomQuote) {
+            document.getElementById("text").innerText = randomQuote.quote;
+            document.getElementById("author").innerText = randomQuote.author;
+            updateTweetLink();
+        } else {
+            console.error("Failed to get a valid quote");
+        }
+    }
+ 
+    function updateTweetLink() {
+    const tweetQuote = document.getElementById("tweet-quote");
+    const text = document.getElementById("text").innerText;
+    const author = document.getElementById("author").innerText;
+    const tweetText = encodeURIComponent(`${text} - ${author}`);
+    tweetQuote.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
+}
+
+    document.addEventListener('DOMContentLoaded', function() {
+        generateQuote();
+        document.getElementById("new-quote").addEventListener('click', generateQuote);
+    });
+    </script>
+
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-size: 16px;
+            background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+            background-size: 100% 100%;
+            animation: gradient 15s ease infinite;
+        }
+        @keyframes gradient {
+            0% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        #quote-box {
+            width: 100%;
+            max-width: 500px;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            background-color: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        #text, #author {
+            margin-bottom: 20px;
+        }
+        #text {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+        #author {
+            font-style: sans-serif;
+            font-size: 1.2rem;
+        }
+        button, a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        button:hover, a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+  <div id="quote-box">
+    <div id="text"></div>
+    <div id="author"></div>
+    <button id="new-quote">New Quote</button>
+    <a class="button" id="tweet-quote" title="Tweet this quote!" target="_blank" href="#" style="background-color: #4CAF50;">
+        Tweet Quote
+      </a>
+  </div>
+  <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+</html>
